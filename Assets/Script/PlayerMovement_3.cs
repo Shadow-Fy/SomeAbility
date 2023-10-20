@@ -12,7 +12,6 @@ public class PlayerMovement_3 : MonoBehaviour
     void Update()
     {
         horizontalmove_float = Input.GetAxis("Horizontal");
-        Movement();
         // Debug.DrawRay(transform.position, Vector2.down, Color.blue);//  画出斜面检测的线
 
     }
@@ -25,9 +24,9 @@ public class PlayerMovement_3 : MonoBehaviour
     public virtual void Movement()
     {
         if (!IsSlope())
-            rb.velocity = new Vector2(horizontalmove_float * speed * Time.fixedDeltaTime, rb.velocity.y);
+            rb.velocity = new Vector2(horizontalmove_float * speed, rb.velocity.y);
         else
-            rb.velocity = SlopeVector() * horizontalmove_float * speed * Time.fixedDeltaTime;
+            rb.velocity = SlopeVector() * horizontalmove_float * speed;
     }
 
     /// <summary>
