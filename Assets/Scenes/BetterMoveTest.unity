@@ -645,7 +645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f716de8ea13b014cb47386024f02954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 78615ebab382ff4479a1ec2ca5b2bc0b, type: 2}
+  data: {fileID: 11400000, guid: a3fc585bcc55f534cba1066ee2bc4927, type: 2}
   isJumping: 0
   isJumpFalling: 0
   jumpCut: 0

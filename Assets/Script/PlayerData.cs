@@ -42,7 +42,9 @@ public class PlayerData : ScriptableObject
     {
         // runAcceleration = Mathf.Clamp(runAcceleration, 0.01f, runMaxSpeed);
         // runDecceleration = Mathf.Clamp(runDecceleration, 0.01f, runMaxSpeed);
+        // 物理学自由落体公式，已知时间和高度求重力g
         gravityStrenth = -(2 * jumpHeight) / (jumpTimeToApex * jumpTimeToApex);
+        // unity刚体的GravityScale定义了刚体受全局重力的倍数，所以需要根据我们的重力来算全局重力的倍率
         gravityScale = gravityStrenth / Physics2D.gravity.y;
         jumpForce = Mathf.Abs(gravityStrenth) * jumpTimeToApex;
     }

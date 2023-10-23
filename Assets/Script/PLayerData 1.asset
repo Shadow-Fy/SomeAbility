@@ -12,24 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3142f467ba3077b4eb7d08d00e23a53f, type: 3}
   m_Name: PLayerData 1
   m_EditorClassIdentifier: 
-  runMaxSpeed: 9.5
-  runAcceleration: 9.5
-  runDecceleration: 9.5
+  runMaxSpeed: 20
+  runAccelAmount: 9
+  runDeccelAmount: 12
   jumpHangAccelerationMult: 1
   jumpHangMaxSpeedMult: 1
   accelInAir: 1
   deccelInAir: 1
-  jumpHeight: 6.5
+  jumpHeight: 4
   jumpTimeToApex: 0.5
   jumpHangTimeThreshold: 1
   jumpCutGravityMult: 3.5
   jumpHangGravityMult: 1
-  jumpForce: 26
+  jumpForce: 16
   coyateTime: 0.2
   jumpInputBufferTime: 0.2
   fastFallGravityMult: 1
   fallGravityMult: 2
   fastFallMaxSpeed: 20
   fallMaxSpeed: 18
-  gravityStrenth: -52
-  gravityScale: 1.7333333
+  gravityStrenth: -32
+  gravityScale: 1.0666667

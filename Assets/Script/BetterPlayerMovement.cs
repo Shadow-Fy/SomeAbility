@@ -12,7 +12,6 @@ public class BetterPlayerMovement : MonoBehaviour
     public float LastOnGroundTime { get; private set; }
     public float LastInputJumpTime { get; private set; }
 
-
     public bool isJumping; // 判断是否跳跃
     public bool isJumpFalling;
     public bool jumpCut;
@@ -28,10 +27,8 @@ public class BetterPlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     private void Awake()
     {
-
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
     }
     void Start()
     {
@@ -66,13 +63,16 @@ public class BetterPlayerMovement : MonoBehaviour
         }
         #endregion
 
-
-
+        // if (Input.GetKeyDown(KeyCode.Z))
+        // {
+        //     rb.AddForce(Vector2.right * 3, ForceMode2D.Impulse);
+        // }
+        Debug.Log(rb.velocity.y);
         if (moveInput.x != 0)
         {
 
         }
-            CheckDirectionToFace(moveInput.x > 0);
+        CheckDirectionToFace(moveInput.x > 0);
 
 
         AnimChange();
@@ -84,17 +84,20 @@ public class BetterPlayerMovement : MonoBehaviour
 
 
         #region 重力
+        // 下落并且按下方向键下
         if (rb.velocity.y < 0 && moveInput.y < 0)
         {
             rb.gravityScale = data.gravityScale * data.fastFallGravityMult;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -data.fastFallMaxSpeed));
         }
+        // 短按空格
         else if (jumpCut)
         {
             rb.gravityScale = data.gravityScale * data.jumpCutGravityMult;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -data.fallMaxSpeed));
         }
-        else if ((isJumping || isJumpFalling) && Mathf.Abs(rb.velocity.y) > data.jumpHangTimeThreshold)
+        // 正在跳跃中且跳跃接近最高点
+        else if ((isJumping || isJumpFalling) && Mathf.Abs(rb.velocity.y) < data.jumpHangTimeThreshold)
         {
             rb.gravityScale = data.gravityScale * data.jumpHangGravityMult;
         }
@@ -151,6 +154,7 @@ public class BetterPlayerMovement : MonoBehaviour
 
 
         float force = data.jumpForce;
+        // 如果正处于下落时想跳跃，希望能跳跃的效果和在平地上的跳跃效果相同
         if (rb.velocity.y < 0)
             force -= rb.velocity.y;
         rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
@@ -179,7 +183,6 @@ public class BetterPlayerMovement : MonoBehaviour
 
         // 添加加速度等同于提高加速的倍率
         float movement = speedDif * accelRate;
-        Debug.Log(accelRate);
         // 添加力移动玩家
         rb.AddForce(movement * Vector2.right, ForceMode2D.Force);
     }
